@@ -1,8 +1,13 @@
+import { NavBar } from "@/components/client/navbar";
+import { createClient } from "@/utils/supabase/server";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { NavBar } from "@/components/client/navbar";
-import { createClient } from "@/utils/supabase/server";
+import { getUser } from "@/functions/getUser";
+import { getProfilesByUser } from "@/functions/getProfilesByUser";
+import { CreateProfile } from "./createProfile";
+import ConditionalRender from "./conditionalRender";
+import { Database } from "@/types/supabase";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,19 +17,23 @@ export const metadata: Metadata = {
 };
 const supabase = createClient();
 
-
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 export default async function Layout(props: LayoutProps) {
-  const user = await supabase.auth.getUser();
-console.log(user)
+  const user = await getUser();
+
+  const profiles = user ? await getProfilesByUser(user.id) : [];
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
+        <NavBar profiles={profiles} />
         {props.children}
+        <ConditionalRender showWhen={profiles?.length === 0}>
+          <CreateProfile />
+        </ConditionalRender>
       </body>
     </html>
   );

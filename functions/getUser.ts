@@ -7,5 +7,5 @@ export async function getUser() {
 
   const response = await supabase.auth.getUser()
   
-  console.log(response);
+  return response.data.user;
 }

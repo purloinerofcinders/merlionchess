@@ -3,7 +3,12 @@
 import { createClient } from "@/utils/supabase/server"
 import { headers } from "next/headers";
 
-export async function signinWithEmailSupabase(email: string) {
+/**
+ * 
+ * @param email 
+ * @returns true if success, false if error
+ */
+export async function signinWithEmail(email: string) {
   const supabase = createClient();
   const origin = headers().get("origin");
   
@@ -14,5 +19,9 @@ export async function signinWithEmailSupabase(email: string) {
     },
   })
 
-  console.log(response);
+  if (response.error) {
+    return false;
+  }
+
+  return true;
 }
