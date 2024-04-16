@@ -11,7 +11,11 @@ export function CreateProfile() {
   const [elo, setElo] = useState("");
 
   async function createProfile() {
-    const success = await insertProfile(name);
+    const profile = {
+      name: name
+    }
+
+    const success = await insertProfile(profile);
 
     if (success) {
       redirect('/');
@@ -22,7 +26,7 @@ export function CreateProfile() {
     <div className="fixed inset-0 z-50 bg-black/50 animate-in fade-in-0">
       <div className="flex w-full h-full justify-center items-center">
         <div className="bg-white sm:rounded-lg p-8">
-          <form>
+          <form id="createInitialProfileForm">
             <div>
               <header>
                 <h1 className="text-2xl font-semibold">Welcome!</h1>

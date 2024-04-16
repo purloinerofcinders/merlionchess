@@ -1,18 +1,18 @@
 "use client";
 
+import ConditionalRender from "@/app/conditionalRender";
 import { signinWithEmail } from "@/functions/signinWithEmail";
+import { Chess } from "@/svg/chess";
+import { Tables } from "@/types/supabase";
+import { SquareUserRound } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
-import { Database } from "@/types/supabase";
-import ConditionalRender from "@/app/conditionalRender";
-import { SquareUserRound } from "lucide-react";
-import { Chess } from "@/svg/chess";
-import Link from "next/link";
 
 type NavBarProps = {
-  profiles: Database["public"]["Tables"]["profiles"]["Row"][];
+  profiles: Tables<"profiles">[]
 };
 
 export function NavBar(props: NavBarProps) {
@@ -33,7 +33,7 @@ export function NavBar(props: NavBarProps) {
             <Chess />
           </div>
           <header>
-            <h1 className="text-lg font-medium">MerlionChess</h1>
+            <h1 className="text-lg font-medium">ChessInSG</h1>
           </header>
         </div>
       </Link>

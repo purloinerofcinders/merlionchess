@@ -15,15 +15,19 @@ export type Database = {
           created_by: string
           end_date: string
           id: string
+          name: string
           ongoing: boolean
+          private: boolean
           start_date: string
         }
         Insert: {
           created_at?: string
-          created_by: string
+          created_by?: string
           end_date: string
           id?: string
+          name: string
           ongoing?: boolean
+          private?: boolean
           start_date: string
         }
         Update: {
@@ -31,7 +35,9 @@ export type Database = {
           created_by?: string
           end_date?: string
           id?: string
+          name?: string
           ongoing?: boolean
+          private?: boolean
           start_date?: string
         }
         Relationships: []
