@@ -38,7 +38,7 @@ export function NavBar(props: NavBarProps) {
         </div>
       </Link>
       <ConditionalRender showWhen={props.profiles.length > 0}>
-        <Button variant="ghost">
+        <Button variant="skeleton">
           <SquareUserRound size={24} />
         </Button>
       </ConditionalRender>

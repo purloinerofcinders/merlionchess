@@ -6,7 +6,7 @@ import { insertProfile } from "@/functions/insertProfile";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
-export function CreateProfile() {
+export function CreateProfileForm() {
   const [name, setName] = useState("");
   const [elo, setElo] = useState("");
 
