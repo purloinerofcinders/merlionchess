@@ -4,11 +4,11 @@ import { getOwnedEvents } from "@/functions/getOwnedEvents";
 import { getUser } from "@/functions/getUser";
 
 export default async function Home() {
-  const events = (await getPublicEvents()).toSorted((a, b) => {
+  const user = await getUser();
+
+  const events = (await getPublicEvents(user?.id)).toSorted((a, b) => {
     return new Date(b.start_date).getTime() - new Date(a.start_date).getTime();
   });
-
-  const user = await getUser();
   
   const myEvents = user ? (await getOwnedEvents(user.id)).toSorted((a, b) => {
     return new Date(b.start_date).getTime() - new Date(a.start_date).getTime();
